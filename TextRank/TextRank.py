@@ -74,4 +74,6 @@ class TextRank():
         summarized = ""
         for i in range(top_sentence):
             summarized += str(self.__ranked_sentence[i][1])+" "
+            print(f"Word similarity: {self.__ranked_sentence[i][0]}")
+            print(f"Represented sentence: {self.__ranked_sentence[i][1]}")
         return summarized
