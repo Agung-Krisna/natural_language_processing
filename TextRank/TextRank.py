@@ -8,6 +8,8 @@ import networkx as nx
 import re
 
 class TextRank():
+
+    #### Start data cleansing####
     def __init__(self, document):
         self.__document = document
         self.__sentence = []
@@ -18,6 +20,7 @@ class TextRank():
         self.__stemming()
         self.__ranking()
     
+
     def __set_raw_sentence(self):
         document = re.sub("<[^>]+>", "", self.__document).strip()
         self.__raw_sentence = sent_tokenize(document)
@@ -42,7 +45,9 @@ class TextRank():
 
     def __stemming(self):
         self.__word = [[PorterStemmer().stem(w) for w in word] for word in self.__word]
-    
+    #### end data cleansing ####
+
+    #### start TextRank algorithm ####
     def __sentence_similarity(self, sentence1, sentence2):
         sentence1 = [word for word in sentence1]
         sentence2 = [word for word in sentence2]
@@ -77,3 +82,5 @@ class TextRank():
             print(f"Word similarity: {self.__ranked_sentence[i][0]}")
             print(f"Represented sentence: {self.__ranked_sentence[i][1]}")
         return summarized
+
+    #### End TextRank Algorithm ####
