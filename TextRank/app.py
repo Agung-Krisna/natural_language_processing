@@ -12,7 +12,8 @@ ctk.set_default_color_theme("blue")
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.geometry = "500x500"
+        self.geometry(f"{700}x{700}")
+        self.minsize(500, 500) 
         self.title("Summary Demonstration")
         self.protocol("WM_DELETE_WINDOW", self.on_close) #when WM_DELETE_WINDOW, call self.on_close()
         self.write_file = False
@@ -35,7 +36,7 @@ class App(ctk.CTk):
         # ========== configuring content =======
 
         # =========== left frame ==============
-        self.input_label = ctk.CTkLabel(master=self.frame_left, text="Input Text File", text_font=("Roboto Medium", 16))
+        self.input_label = ctk.CTkLabel(master=self.frame_left, text="Input Text File", font=("Roboto Medium", 16)) # my machine can't work with "text_font" argument, using newer "font" argument instead 
         self.input_label.grid(row=1, column=0, pady=15, padx=15, sticky="n")
 
         self.input_button = ctk.CTkButton(master=self.frame_left, text="Input File", command=self.select_file)
@@ -56,7 +57,7 @@ class App(ctk.CTk):
         self.start_summary_btn.grid(row=4, column=0, padx=15, pady=15, sticky="n")
 
         self.text_result = StringVar()
-        self.input_label = ctk.CTkLabel(master=self.frame_right, textvariable=self.text_result, text_font=("Roboto Medium", 12), anchor="w", justify=LEFT)
+        self.input_label = ctk.CTkLabel(master=self.frame_right, textvariable=self.text_result, font=("Roboto Me   dium", 12), anchor="w", justify=LEFT)
         self.input_label.grid(row=1, column=0, pady=15, padx=15, sticky="w")
 
     def select_file(self):
